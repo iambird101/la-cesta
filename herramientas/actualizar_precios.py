@@ -133,14 +133,25 @@ def main():
     else:
         fuente = descarga(args)
     n = cerca = 0
+    validos = 0
+    dmin = 1e9
+    muestra = None
+    ciudades = {}
     por_cadena = {c: 0 for c in CADENAS}
     obs = {c: {} for c in CADENAS}
     for p in fuente:
         n += 1
+        if muestra is None:
+            muestra = p
+        lc = p.get("location") or {}
+        ck = (lc.get("osm_address_country_code") or "?") + "/" + str(lc.get("osm_address_city") or lc.get("osm_address_state") or "?")
+        ciudades[ck] = ciudades.get(ck, 0) + 1
         r = normaliza(p)
         if not r:
             continue
+        validos += 1
         loc, lat, lon, texto, valor, base = r
+        dmin = min(dmin, haversine(args.lat, args.lon, lat, lon))
         if haversine(args.lat, args.lon, lat, lon) > args.radio:
             continue
         cerca += 1
@@ -167,6 +178,10 @@ def main():
     for c in CADENAS:
         print(f"  {c:10s} observaciones: {por_cadena[c]:4d} · productos con precio: {cobertura[c]:2d}/{len(prods)}")
     if args.diagnostico:
+        print(f"Utilizables (con coordenadas y unidad de precio): {validos} · distancia mínima a {args.cp}: {dmin:.1f} km")
+        print("Ciudades más frecuentes:", sorted(ciudades.items(), key=lambda x: -x[1])[:12])
+        if muestra:
+            print("Ejemplo de registro:", json.dumps(muestra, ensure_ascii=False)[:1500])
         return
     salida = {"meta": {"fecha": date.today().isoformat(), "cp": args.cp, "fuente": "Open Prices (Open Food Facts), ODbL",
                        "cobertura": cobertura, "total": len(prods)}, "precios": precios}
