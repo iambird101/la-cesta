@@ -71,26 +71,58 @@ def pide(params, token):
     with urllib.request.urlopen(req, timeout=40) as r:
         return json.load(r)
 
+LOCS = "https://prices.openfoodfacts.org/api/v1/locations"
+
+def pide_url(base, params, token):
+    url = base + "?" + urllib.parse.urlencode(params)
+    req = urllib.request.Request(url, headers={"Accept": "application/json", "User-Agent": "la-cesta/1.0"})
+    if token:
+        req.add_header("Authorization", "Bearer " + token)
+    with urllib.request.urlopen(req, timeout=40) as r:
+        return json.load(r)
+
+def tiendas_cercanas(args, token):
+    """La API ignora en silencio los filtros por país o ciudad, así que se listan las tiendas y se filtra aquí por distancia."""
+    cerca, total, pag = [], 0, 1
+    while True:
+        datos = pide_url(LOCS, {"size": 100, "page": pag}, token)
+        items = datos.get("items", [])
+        for t in items:
+            total += 1
+            lat, lon = t.get("osm_lat"), t.get("osm_lon")
+            if lat is None or lon is None:
+                continue
+            d = haversine(args.lat, args.lon, float(lat), float(lon))
+            if d <= args.radio:
+                cerca.append((d, t))
+        if not items or pag >= int(datos.get("pages", pag)):
+            break
+        pag += 1
+        time.sleep(0.3)
+    cerca.sort(key=lambda x: x[0])
+    print(f"Tiendas revisadas: {total} · a menos de {args.radio:g} km: {len(cerca)}", file=sys.stderr)
+    return [t for _, t in cerca]
+
 def descarga(args):
     token = os.environ.get("OPEN_PRICES_TOKEN")
     desde = (date.today() - timedelta(days=args.dias)).isoformat()
-    params = {"size": 100, "order_by": "-date", "currency": "EUR", "date__gte": desde,
-              "location__osm_address_country_code": "ES"}
-    for pag in range(1, args.paginas + 1):
-        params["page"] = pag
-        try:
-            datos = pide(params, token)
-        except urllib.error.HTTPError as e:
-            if e.code in (400, 422) and "location__osm_address_country_code" in params:
-                del params["location__osm_address_country_code"]; print("Filtro de país no admitido; filtro en local.", file=sys.stderr); continue
-            if e.code in (401, 403):
-                sys.exit("La API pide autenticación: define OPEN_PRICES_TOKEN.")
-            raise
-        items = datos.get("items", [])
-        yield from items
-        if pag >= int(datos.get("pages", pag)) or not items:
-            break
-        time.sleep(0.4)
+    for t in tiendas_cercanas(args, token):
+        for pag in range(1, 6):
+            try:
+                datos = pide({"size": 100, "page": pag, "location_id": t["id"], "order_by": "-date"}, token)
+            except urllib.error.HTTPError as e:
+                if e.code in (401, 403):
+                    sys.exit("La API pide autenticación: define OPEN_PRICES_TOKEN.")
+                break
+            items = datos.get("items", [])
+            for p in items:
+                if p.get("location_id", t["id"]) != t["id"]:
+                    return
+                if str(p.get("date", "9999")) >= desde and (p.get("currency") in (None, "EUR")):
+                    yield p
+            if not items or pag >= int(datos.get("pages", pag)):
+                break
+            time.sleep(0.3)
 
 def normaliza(p):
     """Devuelve (cadena_texto, lat, lon, texto_producto, euros_por_base, base) o None. Base: kg, l o ud."""
