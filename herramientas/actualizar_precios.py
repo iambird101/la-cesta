@@ -128,8 +128,14 @@ def main():
     ap.add_argument("--diagnostico", action="store_true"); ap.add_argument("--openapi", action="store_true"); ap.add_argument("--salida", default=str(RAIZ / "precios.json"))
     args = ap.parse_args()
     if args.openapi:
-        with urllib.request.urlopen(urllib.request.Request("https://prices.openfoodfacts.org/api/openapi.json", headers={"User-Agent": "la-cesta/1.0"}), timeout=40) as r:
-            d = json.load(r)
+        d = None
+        for u in ("https://prices.openfoodfacts.org/openapi.json", "https://prices.openfoodfacts.org/api/v1/openapi.json", "https://prices.openfoodfacts.org/api/openapi.json"):
+            try:
+                with urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "la-cesta/1.0"}), timeout=40) as r:
+                    d = json.load(r); print("OpenAPI en", u); break
+            except Exception as e:
+                print("sin", u, e)
+        d = d or {}
         for ruta, ops in d.get("paths", {}).items():
             if ruta.rstrip("/").endswith(("/prices", "/locations")):
                 g = ops.get("get", {})
