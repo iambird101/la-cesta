@@ -1,12 +1,26 @@
 {
-  "meta": { "fecha": "", "fuente": "" },
-  "precios": {
-    "Mercadona": {},
-    "Lidl": {},
-    "Aldi": {},
-    "Dia": {},
-    "Carrefour": {},
-    "Alcampo": {},
-    "Ahorramás": {}
-  }
+ "meta": {
+  "fecha": "2026-10-30",
+  "cp": "28025",
+  "fuente": "Open Prices (Open Food Facts), ODbL",
+  "cobertura": {
+   "Mercadona": 0,
+   "Lidl": 0,
+   "Aldi": 0,
+   "Dia": 0,
+   "Carrefour": 0,
+   "Alcampo": 0,
+   "Ahorramás": 0
+  },
+  "total": 72
+ },
+ "precios": {
+  "Mercadona": {},
+  "Lidl": {},
+  "Aldi": {},
+  "Dia": {},
+  "Carrefour": {},
+  "Alcampo": {},
+  "Ahorramás": {}
+ }
 }
