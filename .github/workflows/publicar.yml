@@ -32,6 +32,7 @@ jobs:
         run: |
           python3 herramientas/actualizar_precios.py --diagnostico --cp 28025 > diagnostico.txt 2>&1 || true
           python3 herramientas/actualizar_precios.py --openapi >> diagnostico.txt 2>&1 || true
+          python3 herramientas/probe.py >> diagnostico.txt 2>&1 || true
           python3 herramientas/actualizar_precios.py --cp 28025
       - name: Guardar precios si han cambiado
         if: github.event_name != 'push'
