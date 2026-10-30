@@ -6,6 +6,30 @@ Precios leídos: 6000 · a menos de 12 km de 28025: 0
   Carrefour  observaciones:    0 · productos con precio:  0/72
   Alcampo    observaciones:    0 · productos con precio:  0/72
   Ahorramás  observaciones:    0 · productos con precio:  0/72
-Utilizables (con coordenadas y unidad de precio): 111 · distancia mínima a 28025: 914.4 km
-Ciudades más frecuentes: [('FR/Nancy', 1511), ('FR/Lyon', 1335), ('FR/Amiens', 393), ('FR/Paris', 392), ('CY/Λεμεσός', 259), ('FR/Grenoble', 225), ('FR/Canteleu', 181), ('FR/Laxou', 156), ('DE/München', 127), ('FR/Laneuveville-devant-Nancy', 123), ('DE/Strausberg', 100), ('FR/Saint-Denis', 80)]
-Ejemplo de registro: {"id": 356587, "product_id": 2113255, "location_id": 1113, "proof_id": 142085, "product": {"id": 2113255, "code": "3364699129242", "source": "off", "source_last_synced": "2026-10-29T23:33:37.172816Z", "product_name": "Mochis Glacés", "image_url": "https://images.openfoodfacts.org/images/products/336/469/912/9242/front_fr.15.400.jpg", "product_quantity": 210, "product_quantity_unit": "g", "quantity": "210 g", "categories_tags": ["en:desserts", "en:frozen-foods", "en:frozen-desserts", "en:ice-creams-and-sorbets", "en:mochi-ice-cream"], "brands": "Tang Frères", "brands_tags": ["Tang Frères"], "labels_tags": ["en:made-in-france", "fr:triman"], "nutriscore_grade": "d", "ecoscore_grade": "unknown", "nova_group": 4, "creator": "kiliweb", "unique_scans_n": 1, "price_count": 2, "price_currency_count": 0, "location_count": 0, "location_type_osm_country_count": 0, "user_count": 0, "proof_count": 0, "created": "2024-01-11T06:30:50.147896Z", "updated": "2026-10-29T23:33:37.176128Z"}, "location": {"id": 1113, "osm_brand_logo_url": null, "type": "OSM", "osm_id": 252814154, "osm_type": "NODE", "osm_name": "Tang Frères", "osm_display_name": "Tang Frères, 48, Avenue d'Ivry, Quartier de la Gare, Paris 13e Arrondissement, Paris, Île-de-France, France métropolitaine, 75013, France", "osm_tag_key": "shop", "osm_tag_value": "supermarket", "osm_tags": ["organic:no"], "osm_brand": null, "osm_address_postcode": "75013", "osm_address_city": "Paris", "osm_address_country": "France", "osm_address_country
+Utilizables (con coordenadas y unidad de precio): 126 · distancia mínima a 28025: 919.8 km
+Ciudades más frecuentes: [('FR/Nancy', 1385), ('FR/Lyon', 1351), ('FR/Amiens', 373), ('FR/Paris', 299), ('FR/Canteleu', 266), ('FR/Grenoble', 249), ('CY/Λεμεσός', 245), ('FR/Laneuveville-devant-Nancy', 174), ('FR/Laxou', 157), ('DE/Strausberg', 136), ('DE/München', 119), ('FR/Charenton-le-Pont', 88)]
+Ejemplo de registro: {"id": 356588, "product_id": 4590254, "location_id": 1113, "proof_id": 142085, "product": {"id": 4590254, "code": "3364699134659", "source": "off", "source_last_synced": "2026-10-29T23:30:55.495054Z", "product_name": "Mochis Glacés Sésame Noir", "image_url": "https://images.openfoodfacts.org/images/products/336/469/913/4659/front_fr.23.400.jpg", "product_quantity": 210, "product_quantity_unit": "g", "quantity": "210 g", "categories_tags": ["en:desserts", "en:frozen-foods", "en:frozen-desserts", "en:ice-creams-and-sorbets", "en:mochi-ice-cream"], "brands": "Tang Frères", "brands_tags": ["Tang Frères"], "labels_tags": ["en:made-in-france", "fr:triman", "fr:Ref. 11346500"], "nutriscore_grade": "d", "ecoscore_grade": "unknown", "nova_group": 4, "creator": "smoothie-app", "unique_scans_n": 1, "price_count": 1, "price_currency_count": 0, "location_count": 0, "location_type_osm_country_count": 0, "user_count": 0, "proof_count": 0, "created": "2026-07-30T18:11:38.017825Z", "updated": "2026-10-29T23:30:55.498295Z"}, "location": {"id": 1113, "osm_brand_logo_url": null, "type": "OSM", "osm_id": 252814154, "osm_type": "NODE", "osm_name": "Tang Frères", "osm_display_name": "Tang Frères, 48, Avenue d'Ivry, Quartier de la Gare, Paris 13e Arrondissement, Paris, Île-de-France, France métropolitaine, 75013, France", "osm_tag_key": "shop", "osm_tag_value": "supermarket", "osm_tags": ["organic:no"], "osm_brand": null, "osm_address_postcode": "75013", "osm_address_city": "Paris", "osm_address_cou
+Traceback (most recent call last):
+  File "/home/runner/work/la-cesta/la-cesta/herramientas/actualizar_precios.py", line 200, in <module>
+    main()
+  File "/home/runner/work/la-cesta/la-cesta/herramientas/actualizar_precios.py", line 131, in main
+    with urllib.request.urlopen(urllib.request.Request("https://prices.openfoodfacts.org/api/openapi.json", headers={"User-Agent": "la-cesta/1.0"}), timeout=40) as r:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/urllib/request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/urllib/request.py", line 521, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/urllib/request.py", line 630, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/urllib/request.py", line 559, in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/urllib/request.py", line 639, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
