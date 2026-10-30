@@ -32,13 +32,17 @@ jobs:
         run: python3 herramientas/actualizar_precios.py --cp 28025
       - name: Guardar precios si han cambiado
         if: github.event_name != 'push'
+        continue-on-error: true
         run: |
           git config user.name "precios-bot"
           git config user.email "precios-bot@users.noreply.github.com"
           git add precios.json
           if ! git diff --cached --quiet; then
             git commit -m "Precios actualizados"
-            git push
+            git pull --rebase origin main
+            git push origin HEAD:main
+          else
+            echo "Sin cambios en los precios"
           fi
       - name: Preparar el sitio
         run: |
