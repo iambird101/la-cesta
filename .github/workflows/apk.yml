@@ -1,0 +1,52 @@
+# Compila el APK de Android (instalable en el móvil) y lo publica en la sección Releases.
+name: Crear APK
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - uses: android-actions/setup-android@v3
+      - name: Instalar dependencias
+        run: npm ci
+      - name: Preparar la web dentro de la app
+        run: |
+          OWNER="${GITHUB_REPOSITORY%%/*}"
+          REPO="${GITHUB_REPOSITORY#*/}"
+          echo "window.LACESTA={preciosUrl:\"https://${OWNER,,}.github.io/${REPO}/precios.json\"};" > config.js
+          mkdir -p www
+          cp -r index.html config.js manifest.webmanifest sw.js icons precios.json productos.csv www/
+      - name: Usar siempre la misma firma (así se puede actualizar sin desinstalar)
+        run: |
+          mkdir -p ~/.android
+          cp android-signing/debug.keystore ~/.android/debug.keystore
+      - name: Sincronizar Capacitor
+        run: npx cap sync android
+      - name: Compilar
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon
+      - name: Renombrar APK
+        run: cp android/app/build/outputs/apk/debug/app-debug.apk La-Cesta.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: La-Cesta-apk
+          path: La-Cesta.apk
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: apk-${{ github.run_number }}
+          name: La Cesta (APK ${{ github.run_number }})
+          files: La-Cesta.apk
+          make_latest: true

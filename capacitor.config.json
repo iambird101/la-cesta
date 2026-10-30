@@ -1,0 +1,16 @@
+{
+  "appId": "es.lacesta.app",
+  "appName": "La Cesta",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "backgroundColor": "#1d7a4c"
+  },
+  "plugins": {
+    "CapacitorHttp": {
+      "enabled": true
+    }
+  }
+}

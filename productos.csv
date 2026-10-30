@@ -1,0 +1,73 @@
+﻿id;nombre;seccion;tamano_envase;unidad;precio_referencia_mercadona
+tomate;Tomate;Verdura y fruta;1000;g;2,2
+cebolla;Cebolla;Verdura y fruta;1000;g;1,3
+ajo;Ajo;Verdura y fruta;100;g;1,1
+pimiento;Pimiento;Verdura y fruta;500;g;1,9
+zanahoria;Zanahoria;Verdura y fruta;1000;g;1,1
+patata;Patata;Verdura y fruta;3000;g;3,2
+calabacin;Calabacín;Verdura y fruta;500;g;1,4
+lechuga;Lechuga;Verdura y fruta;1;ud;0,95
+espinacas;Espinacas;Verdura y fruta;300;g;1,8
+champis;Champiñones;Verdura y fruta;500;g;2,1
+limon;Limón;Verdura y fruta;4;ud;1,2
+platano;Plátano;Verdura y fruta;1000;g;1,6
+manzana;Manzana;Verdura y fruta;1000;g;2,1
+brocoli;Brócoli;Verdura y fruta;500;g;1,6
+judias;Judías verdes;Verdura y fruta;500;g;1,95
+berenjena;Berenjena;Verdura y fruta;500;g;1,5
+pepino;Pepino;Verdura y fruta;600;g;1,1
+puerro;Puerro;Verdura y fruta;500;g;1,6
+calabaza;Calabaza;Verdura y fruta;1000;g;1,9
+coliflor;Coliflor;Verdura y fruta;1000;g;1,9
+esparragos;Espárragos verdes;Verdura y fruta;250;g;2,4
+naranja;Naranja;Verdura y fruta;1000;g;1,7
+pechuga;Pechuga de pollo;Carne y pescado;1000;g;7,5
+muslo;Muslos de pollo;Carne y pescado;1000;g;4,2
+picada;Carne picada mixta;Carne y pescado;500;g;4
+lomo;Lomo de cerdo;Carne y pescado;1000;g;7,2
+ternera;Ternera para guisar;Carne y pescado;600;g;8,4
+merluza;Merluza en filetes;Carne y pescado;800;g;8,5
+salmon;Salmón en lomos;Carne y pescado;400;g;7
+bacalao;Bacalao desalado;Carne y pescado;400;g;6,6
+dorada;Dorada;Carne y pescado;2;ud;4,9
+lubina;Lubina;Carne y pescado;2;ud;6,4
+sardinas;Sardinas;Carne y pescado;500;g;3,3
+boquerones;Boquerones;Carne y pescado;500;g;4,3
+mejillones;Mejillones;Carne y pescado;1000;g;2,9
+pulpo;Pulpo cocido;Carne y pescado;300;g;7,5
+jamon;Jamón cocido;Charcutería;200;g;2,2
+serrano;Jamón serrano;Charcutería;150;g;2,5
+chorizo;Chorizo;Charcutería;250;g;2,6
+panceta;Panceta;Charcutería;300;g;2,8
+huevos;Huevos;Lácteos y huevos;12;ud;2,6
+leche;Leche;Lácteos y huevos;1000;ml;0,95
+yogur;Yogur natural;Lácteos y huevos;4;ud;1
+queso;Queso rallado;Lácteos y huevos;200;g;1,6
+nata;Nata de cocina;Lácteos y huevos;200;ml;0,95
+feta;Queso feta;Lácteos y huevos;200;g;2,1
+mozzarella;Mozzarella;Lácteos y huevos;125;g;0,85
+manchego;Queso manchego;Lácteos y huevos;250;g;3,9
+pan;Pan (barra);Panadería;1;ud;0,65
+wraps;Tortillas de trigo (wraps);Panadería;8;ud;1,95
+atun;Atún en lata;Despensa;3;ud;3,1
+anchoas;Anchoas en aceite;Despensa;1;ud;1,65
+arroz;Arroz;Despensa;1000;g;1,6
+pasta;Pasta;Despensa;500;g;0,95
+fideos;Fideos;Despensa;500;g;0,95
+lentejas;Lentejas;Despensa;1000;g;2,6
+garbanzos;Garbanzos cocidos;Despensa;570;g;0,95
+alubias;Alubias cocidas;Despensa;570;g;0,95
+tfrito;Tomate frito;Despensa;400;g;0,95
+ttritu;Tomate triturado;Despensa;800;g;1,15
+aceite;Aceite de oliva;Despensa;1000;ml;8,9
+harina;Harina;Despensa;1000;g;1,05
+avena;Copos de avena;Despensa;500;g;1,5
+cuscus;Cuscús;Despensa;500;g;1,55
+aceitunas;Aceitunas;Despensa;350;g;1,3
+piquillo;Pimientos del piquillo;Despensa;290;g;2,1
+mayonesa;Mayonesa;Despensa;450;ml;1,95
+panrallado;Pan rallado;Despensa;500;g;1,1
+caldo;Caldo de pollo;Despensa;1000;ml;1,25
+gambas;Gambas congeladas;Congelados;400;g;5,6
+guisantes;Guisantes congelados;Congelados;450;g;1,6
+calamares;Anillas de calamar;Congelados;400;g;3,6

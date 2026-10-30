@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">La Cesta</string>
+    <string name="title_activity_main">La Cesta</string>
+    <string name="package_name">es.lacesta.app</string>
+    <string name="custom_url_scheme">es.lacesta.app</string>
+</resources>
